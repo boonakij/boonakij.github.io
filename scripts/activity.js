@@ -67,6 +67,10 @@ window.onload = function(){
 $( document ).ready(function() {
   var cardsFlipped = [];
   var turnCount = 0;
+  var readingTimeOn = false;
+  var readingTimeEnd = null;
+  var readingTimeLength = 10000;
+
 
   $("#gameWonModal-button").click(function() {
     $("#gameWonModal").slideUp(1000, function() {
@@ -78,7 +82,6 @@ $( document ).ready(function() {
     $("#gameStartModal").slideUp(1000, function() {
     });
   });
-
 
   function flipCardUp(card, id) {
     if ($(card).hasClass("flipped")) return;
@@ -97,15 +100,26 @@ $( document ).ready(function() {
   }
 
   function flipCardDown(card) {
-    $(card).find(".cross").fadeIn().delay(1000).fadeOut(function() {
+    $(card).find(".cross").fadeIn().delay(1000).fadeOut().delay(readingTimeLength).queue(function() {
       $(card).removeClass("flipped");
       $("#focused1 .card-inner").removeAttr('style');
       $("#focused2 .card-inner").removeAttr('style');
       $("#focused1").removeAttr('style');
       $("#focused2").removeAttr('style');
       card.setAttribute("id", "");
-      // $(card).removeClass("focused");
+      $(this).dequeue();
     });
+  }
+
+  function flipCardsDownNow() {
+    $("#focused1").removeClass("flipped");
+    $("#focused2").removeClass("flipped");
+    $("#focused1 .card-inner").removeAttr('style');
+    $("#focused2 .card-inner").removeAttr('style');
+    $("#focused1").removeAttr('style');
+    $("#focused2").removeAttr('style');
+    document.getElementById("focused1").setAttribute("id", "");
+    document.getElementById("focused2").setAttribute("id", "");
   }
 
   function markCardComplete(card) {
@@ -143,7 +157,25 @@ $( document ).ready(function() {
     return false
   }
 
+  function updateReadingMeter() {
+    if (!readingTimeOn) return;
+    if (Date.now() < readingTimeEnd) {
+      var percentage = 100 * (1 - (readingTimeEnd - Date.now())/readingTimeLength) + "%";
+      $("#readingTimerMeterForeground").css("width", percentage);
+      return true;
+    }
+    else {
+      $("#readingTimerMeterContainer").fadeOut();
+      readingTimeOn = false;
+      readingTimeEnd = null;
+      return false;
+    }
+  }
+
+  var timerInterval = null;
+
   $('.card-outer').click(function() {
+    if (readingTimeOn) return;
     if (cardsFlipped.length < 2) {
       flipCardUp(this, cardsFlipped.length + 1);
       setTimeout(function() {
@@ -155,6 +187,12 @@ $( document ).ready(function() {
             cardsFlipped = [];
           }
           else {
+            if (!readingTimeOn) {
+              $("#readingTimerMeterContainer").fadeIn();
+              readingTimeOn = true;
+              readingTimeEnd = Date.now() + readingTimeLength;
+            }
+            timerInterval = setInterval(updateReadingMeter, 20);
             flipCardDown(cardsFlipped[0]);
             flipCardDown(cardsFlipped[1]);
             cardsFlipped = []
@@ -163,30 +201,48 @@ $( document ).ready(function() {
       }, 2500);
     }
   });
-});
 
-// Source: https://stackoverflow.com/questions/2424191/how-do-i-make-an-element-draggable-in-jquery
-function handle_mousedown(e){
+  $(document).click(function() {
+    if (readingTimeOn) {
+      flipCardsDownNow()
+      $("#readingTimerMeterContainer").fadeOut();
+      clearInterval(timerInterval);
+      readingTimeOn = false;
+    }
+  })
+
+  // Source: https://stackoverflow.com/questions/2424191/how-do-i-make-an-element-draggable-in-jquery
+  function handle_mousedown(e){
     window.my_dragging = {};
     my_dragging.pageX0 = e.pageX;
     my_dragging.pageY0 = e.pageY;
     my_dragging.elem = this;
     my_dragging.offset0 = $(this).offset();
     function handle_dragging(e){
-        var left = my_dragging.offset0.left + (e.pageX - my_dragging.pageX0);
-        var top = my_dragging.offset0.top + (e.pageY - my_dragging.pageY0);
-        $(my_dragging.elem)
-        .offset({top: top, left: left});
+      var left = my_dragging.offset0.left + (e.pageX - my_dragging.pageX0);
+      var top = my_dragging.offset0.top + (e.pageY - my_dragging.pageY0);
+      $(my_dragging.elem)
+      .offset({top: top, left: left});
     }
     function handle_mouseup(e){
-        $('body')
-        .off('mousemove', handle_dragging)
-        .off('mouseup', handle_mouseup);
+      $('body')
+      .off('mousemove', handle_dragging)
+      .off('mouseup', handle_mouseup);
     }
     $('body')
     .on('mouseup', handle_mouseup)
     .on('mousemove', handle_dragging);
-}
+  }
 
-$(document).on('mousedown', '#focused1', handle_mousedown);
-$(document).on('mousedown', '#focused2', handle_mousedown);
+  $(document).on('click', '#focused1', function(e) {
+    e.stopPropagation();
+  });
+
+  $(document).on('click', '#focused2', function(e) {
+    e.stopPropagation();
+  });
+
+  $(document).on('mousedown', '#focused1', handle_mousedown);
+  $(document).on('mousedown', '#focused2', handle_mousedown);
+
+});
