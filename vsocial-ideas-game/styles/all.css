@@ -1,0 +1,210 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #332f35;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+}
+
+.title {
+  color: white;
+  font-size: 4vw;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2vw;
+  margin-bottom: 3vw;
+}
+
+.clip-name {
+  color: white;
+  font-size: 4vw;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1vw;
+}
+
+.questions-container {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+
+.speaker-questions {
+  flex: 1;
+  height: 100%;
+  border-right: 3px solid white;
+  box-sizing: border-box;
+  color: white;
+}
+
+.listener-questions {
+  flex: 1;
+  height: 100%;
+  box-sizing: border-box;
+  color: white;
+}
+
+.form-title {
+  font-size: 4vw;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1vw;
+}
+
+.question {
+  width: 90%;
+  margin: auto;
+  font-size: 1.5vw;
+}
+
+/* Source: https://codepen.io/skeddles/pen/PbROLK */
+
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+label {
+  color: #9a929e;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  width: 10vw;
+  height: 3vw;
+  line-height: 3vw;
+  text-align: center;
+}
+
+input[type=radio]:checked + label {
+  color: #ccc8ce;
+  background: #675f6b;
+}
+
+label + input[type=radio] + label {
+  border-left: solid 3px #675f6b;
+}
+
+.radio-group {
+  border: solid 3px #675f6b;
+  display: inline-block;
+  margin-left: 10vw;
+  margin-top: 1vw;
+  margin-bottom: 2vw;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.clear-button {
+  transition: 0.3s all;
+  width: 10vw;
+  height: 3vw;
+  border: 3px solid #675f6b;
+  border-radius: 10px;
+  margin: auto;
+  line-height: 3vw;
+  text-align: center;
+  color: #675f6b;
+  font-size: 1.5vw;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.debug {
+  color: white;
+}
+
+.clear-button:hover {
+  border: 3px solid white;
+  color: white;
+}
+
+.back-button {
+  display: none;
+  width: 6vw;
+  height: 10vw;
+  line-height: 8vw;
+  position: fixed;
+  bottom: 5vw;
+  left: 0px;
+  font-size: 5vw;
+  color: white;
+  text-align: center;
+  background-color: #675f6b;
+  border-top-right-radius: 1vw;
+  border-bottom-right-radius: 1vw;
+}
+
+.back-button:hover {
+  cursor: pointer;
+}
+
+.back-button-desc {
+  font-size: 1vw;
+  color: white;
+  width: 100%;
+  height: 5vw;
+  position: absolute;
+  bottom: 1vw;
+  left: 0vw;
+}
+
+.next-button, .submit-button {
+  display: none;
+  width: 6vw;
+  height: 10vw;
+  line-height: 8vw;
+  position: fixed;
+  bottom: 5vw;
+  right: 0px;
+  font-size: 5vw;
+  color: white;
+  text-align: center;
+  background-color: #675f6b;
+  border-top-left-radius: 1vw;
+  border-bottom-left-radius: 1vw;
+}
+
+.next-button:hover, .submit-button:hover {
+  cursor: pointer;
+}
+
+.next-button-desc, .submit-button-desc {
+  font-size: 1vw;
+  color: white;
+  width: 100%;
+  height: 5vw;
+  position: absolute;
+  bottom: 1vw;
+  left: 0vw;
+}
+
+.form-container {
+  position: relative;
+}
+
+.checkmark {
+  display: none;
+  position: absolute;
+  width: 10vw;
+  height: 5vw;
+  background-image: url("../images/checkmark.png");
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.cross {
+  display: none;
+  position: absolute;
+  width: 10vw;
+  height: 5vw;
+  background-image: url("../images/cross.png");
+  background-size: 25%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
