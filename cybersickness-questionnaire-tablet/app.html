@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <title>vSocial Ideas Game</title>
+
+  <style>
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #332f35;
+      -webkit-user-select: none; /* Safari 3.1+ */
+      -moz-user-select: none; /* Firefox 2+ */
+      -ms-user-select: none; /* IE 10+ */
+      user-select: none; /* Standard syntax */
+    }
+
+    .title {
+      color: white;
+      font-size: 4vw;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 5vw;
+      margin-bottom: 3vw;
+    }
+
+    .clip-name {
+      color: white;
+      font-size: 1.6vw;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 3vw;
+    }
+
+    .questions-container {
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      margin: auto;
+    }
+
+    .speaker-questions {
+      flex: 1;
+      height: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      color: white;
+    }
+
+    .listener-questions {
+      flex: 1;
+      height: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      color: white;
+    }
+
+    .question {
+      width: 90%;
+      margin: auto;
+      font-size: 2vw;
+    }
+
+    /* Source: https://codepen.io/skeddles/pen/PbROLK */
+
+    input[type=radio] {
+      position: absolute;
+      visibility: hidden;
+      display: none;
+    }
+
+    label {
+      color: #9a929e;
+      display: inline-block;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 2.5vw;
+      width: 12vw;
+      height: 5vw;
+      line-height: 5vw;
+      text-align: center;
+    }
+
+    input[type=radio]:checked + label {
+      color: #ccc8ce;
+      background: #675f6b;
+    }
+
+    label + input[type=radio] + label {
+      border-left: solid .3vw #675f6b;
+    }
+
+    .radio-group {
+      border: solid .3vw #675f6b;
+      display: inline-block;
+      margin-top: 1vw;
+      margin-bottom: 2vw;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+
+    #submitButton, #nextButton{
+      transition: 0.3s all;
+      border: solid .3vw #675f6b;
+      display: inline-block;
+      margin-top: 3vw;
+      margin-bottom: 2vw;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      background-color: #332f35;
+      cursor: pointer;
+      color: #9a929e;
+      width: 60.8vw;
+       height: 5vw;
+      font-size: 2.5vw;
+      font-weight: bold;
+    }
+
+
+    .clear-button {
+      transition: 0.3s all;
+      width: 10vw;
+      height: 3vw;
+      border: solid .3vw #675f6b;
+      border-radius: 10px;
+      margin: auto;
+      margin-top: 3vw;
+      line-height: 3vw;
+      text-align: center;
+      color: #675f6b;
+      font-size: 1.5vw;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .clear-button:hover {
+      border: 3px solid white;
+      color: white;
+    }
+
+    #submitButton:hover, #nextButton:hover {
+      border: 3px solid white;
+      color: white;
+    }
+
+    .form-container {
+      position: relative;
+    }
+
+    #submitButton:focus, #nextButton:focus {
+      outline: none;
+    }
+
+    #part-1-container {
+
+    }
+
+    #part-2-container {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="title">vSocial Cybersickness Questionnaire</div>
+
+
+  <div class="questions-container">
+
+    <div class="speaker-questions" id="part-1-container">
+      <div class="clip-name">Please answer to what degree you feel each of the following symptoms with 1 being not at all and 5 being very much</div>
+
+      <div class="question">General Discomfort</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q1-option-1" name="selector" value="1"><label for="q1-option-1">1</label><input type="radio" id="q1-option-2" name="selector" value="2"><label for="q1-option-2">2</label><input type="radio" id="q1-option-3" name="selector" value="3"><label for="q1-option-3">3</label><input type="radio" id="q1-option-4" name="selector" value="4"><label for="q1-option-4">4</label><input type="radio" id="q1-option-5" name="selector" value="5"><label for="q1-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Fatigue</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q2-option-1" name="selector" value="1"><label for="q2-option-1">1</label><input type="radio" id="q2-option-2" name="selector" value="2"><label for="q2-option-2">2</label><input type="radio" id="q2-option-3" name="selector" value="3"><label for="q2-option-3">3</label><input type="radio" id="q2-option-4" name="selector" value="4"><label for="q2-option-4">4</label><input type="radio" id="q2-option-5" name="selector" value="5"><label for="q2-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Eyestrain</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q3-option-1" name="selector" value="1"><label for="q3-option-1">1</label><input type="radio" id="q3-option-2" name="selector" value="2"><label for="q3-option-2">2</label><input type="radio" id="q3-option-3" name="selector" value="3"><label for="q3-option-3">3</label><input type="radio" id="q3-option-4" name="selector" value="4"><label for="q3-option-4">4</label><input type="radio" id="q3-option-5" name="selector" value="5"><label for="q3-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Difficulty Focusing</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q4-option-1" name="selector" value="1"><label for="q4-option-1">1</label><input type="radio" id="q4-option-2" name="selector" value="2"><label for="q4-option-2">2</label><input type="radio" id="q4-option-3" name="selector" value="3"><label for="q4-option-3">3</label><input type="radio" id="q4-option-4" name="selector" value="4"><label for="q4-option-4">4</label><input type="radio" id="q4-option-5" name="selector" value="5"><label for="q4-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Headache</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q5-option-1" name="selector" value="1"><label for="q5-option-1">1</label><input type="radio" id="q5-option-2" name="selector" value="2"><label for="q5-option-2">2</label><input type="radio" id="q5-option-3" name="selector" value="3"><label for="q5-option-3">3</label><input type="radio" id="q5-option-4" name="selector" value="4"><label for="q5-option-4">4</label><input type="radio" id="q5-option-5" name="selector" value="5"><label for="q5-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Fullness of Head</div>
+        <div class="form-container">
+          <div class="checkmark"></div>
+          <div class="cross"></div>
+          <form class="radio-group">
+            <input type="radio" id="q6-option-1" name="selector" value="1"><label for="q6-option-1">1</label><input type="radio" id="q6-option-2" name="selector" value="2"><label for="q6-option-2">2</label><input type="radio" id="q6-option-3" name="selector" value="3"><label for="q6-option-3">3</label><input type="radio" id="q6-option-4" name="selector" value="4"><label for="q6-option-4">4</label><input type="radio" id="q6-option-5" name="selector" value="5"><label for="q6-option-5">5</label>
+          </form>
+        </div>
+
+        <div class="question">Blurred Vision</div>
+        <div class="form-container">
+          <div class="checkmark"></div>
+          <div class="cross"></div>
+          <form class="radio-group">
+            <input type="radio" id="q7-option-1" name="selector" value="1"><label for="q7-option-1">1</label><input type="radio" id="q7-option-2" name="selector" value="2"><label for="q7-option-2">2</label><input type="radio" id="q7-option-3" name="selector" value="3"><label for="q7-option-3">3</label><input type="radio" id="q7-option-4" name="selector" value="4"><label for="q7-option-4">4</label><input type="radio" id="q7-option-5" name="selector" value="5"><label for="q7-option-5">5</label>
+          </form>
+        </div>
+
+        <div class="question">Dizzy</div>
+        <div class="form-container">
+          <div class="checkmark"></div>
+          <div class="cross"></div>
+          <form class="radio-group">
+            <input type="radio" id="q8-option-1" name="selector" value="1"><label for="q8-option-1">1</label><input type="radio" id="q8-option-2" name="selector" value="2"><label for="q8-option-2">2</label><input type="radio" id="q8-option-3" name="selector" value="3"><label for="q8-option-3">3</label><input type="radio" id="q8-option-4" name="selector" value="4"><label for="q8-option-4">4</label><input type="radio" id="q8-option-5" name="selector" value="5"><label for="q8-option-5">5</label>
+          </form>
+        </div>
+
+      <div class="question">Vertigo</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q9-option-1" name="selector" value="1"><label for="q9-option-1">1</label><input type="radio" id="q9-option-2" name="selector" value="2"><label for="q9-option-2">2</label><input type="radio" id="q9-option-3" name="selector" value="3"><label for="q9-option-3">3</label><input type="radio" id="q9-option-4" name="selector" value="4"><label for="q9-option-4">4</label><input type="radio" id="q9-option-5" name="selector" value="5"><label for="q9-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="form-container">
+        <button id="nextButton">Next</button>
+      </div>
+    </div>
+
+
+    <div class="speaker-questions" id="part-2-container">
+      <div class="clip-name">Please answer to what degree you were affected by the following with 1 being not at all and 5 being very much</div>
+
+      <div class="question">Screen Shakiness</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q10-option-1" name="selector" value="1"><label for="q10-option-1">1</label><input type="radio" id="q10-option-2" name="selector" value="2"><label for="q10-option-2">2</label><input type="radio" id="q10-option-3" name="selector" value="3"><label for="q10-option-3">3</label><input type="radio" id="q10-option-4" name="selector" value="4"><label for="q10-option-4">4</label><input type="radio" id="q10-option-5" name="selector" value="5"><label for="q10-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Screen Freezing</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q11-option-1" name="selector" value="1"><label for="q11-option-1">1</label><input type="radio" id="q11-option-2" name="selector" value="2"><label for="q11-option-2">2</label><input type="radio" id="q11-option-3" name="selector" value="3"><label for="q11-option-3">3</label><input type="radio" id="q11-option-4" name="selector" value="4"><label for="q11-option-4">4</label><input type="radio" id="q11-option-5" name="selector" value="5"><label for="q11-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Obstructed View of Content</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q12-option-1" name="selector" value="1"><label for="q12-option-1">1</label><input type="radio" id="q12-option-2" name="selector" value="2"><label for="q12-option-2">2</label><input type="radio" id="q12-option-3" name="selector" value="3"><label for="q12-option-3">3</label><input type="radio" id="q12-option-4" name="selector" value="4"><label for="q12-option-4">4</label><input type="radio" id="q12-option-5" name="selector" value="5"><label for="q12-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Noise Problems</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q13-option-1" name="selector" value="1"><label for="q13-option-1">1</label><input type="radio" id="q13-option-2" name="selector" value="2"><label for="q13-option-2">2</label><input type="radio" id="q13-option-3" name="selector" value="3"><label for="q13-option-3">3</label><input type="radio" id="q13-option-4" name="selector" value="4"><label for="q13-option-4">4</label><input type="radio" id="q13-option-5" name="selector" value="5"><label for="q13-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Hearing Noise over Instructor</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q14-option-1" name="selector" value="1"><label for="q14-option-1">1</label><input type="radio" id="q14-option-2" name="selector" value="2"><label for="q14-option-2">2</label><input type="radio" id="q14-option-3" name="selector" value="3"><label for="q14-option-3">3</label><input type="radio" id="q14-option-4" name="selector" value="4"><label for="q14-option-4">4</label><input type="radio" id="q14-option-5" name="selector" value="5"><label for="q14-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="form-container">
+        <button id="submitButton">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="clear-button">Clear</div>
+
+
+  <script>
+    $( document ).ready(function() {
+
+      $("#submitButton").hide();
+
+      $("#nextButton").hide();
+
+      if(allAnswered()){
+        $("#submitButton").show();
+      }
+
+      function clearAnswers() {
+        $("input").prop('checked', false);
+      }
+
+
+      var arr = [];
+      function allAnswered() {
+        var allAnswered = true;
+        if ($("#part-1-container").hasClass("completed")) {
+          $("#part-2-container").find("form").each(function() {
+              if ($(this).serialize() == "") {
+                allAnswered = false;
+              }
+          });
+          arr = []
+          $("#part-2-container").find('input[type="radio"]:checked').each(function(){
+             console.log($(this).val());
+             arr.push($(this).val());
+          });
+        }
+        else {
+          $("#part-1-container").find("form").each(function() {
+              if ($(this).serialize() == "") {
+                allAnswered = false;
+              }
+          });
+          arr = []
+          $("#part-1-container").find('input[type="radio"]:checked').each(function(){
+             console.log($(this).val());
+             arr.push($(this).val());
+          });
+        }
+        return allAnswered;
+      }
+
+      $(".clear-button").click(function() {
+        clearAnswers();
+        $("#nextButton").hide();
+        $("#submitButton").hide();
+      });
+
+      $('input').on('change', function() {
+        if (allAnswered() && !$("#part-1-container").hasClass("completed")) {
+          $("#part-1-container").addClass("completed")
+          $("#nextButton").show();
+        }
+        else if (allAnswered() && $("#part-1-container").hasClass("completed")) {
+          $("#submitButton").show();
+        }
+      });
+
+      $("#nextButton").click(function(){
+        // let answers = ($(document.getElementsByClassName('debug')).html());
+        console.log(arr);
+        // window.location.href = "ui-questions.html";
+        $("#part-1-container").fadeOut(function(){
+          $("#part-2-container").fadeIn();
+        });
+        // return answers; //storing answers? Probably need PHP
+      });
+
+      $("#submitButton").click(function(){
+        // let answers = ($(document.getElementsByClassName('debug')).html());
+        console.log(arr);
+        // window.location.href = "index2.html";
+        // return answers; //storing answers? Probably need PHP
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>
