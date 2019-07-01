@@ -412,7 +412,7 @@
       function sendData(scores) {
         request = $.ajax({
           url: "courseplan.pro/includes/send_data.php",
-          type: "POST",
+          type: "GET",
           data: {"scores": scores},
           success: function() { }
         });
