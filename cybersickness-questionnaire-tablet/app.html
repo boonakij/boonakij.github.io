@@ -25,8 +25,16 @@
       font-size: 4vw;
       font-weight: bold;
       text-align: center;
-      margin-top: 5vw;
-      margin-bottom: 3vw;
+      margin-top: 4vw;
+      margin-bottom: 1.5vw;
+    }
+
+    .subtitle {
+      color: white;
+      font-size: 3vw;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1vw;
     }
 
     .clip-name {
@@ -111,7 +119,7 @@
       border: solid .3vw #675f6b;
       display: inline-block;
       margin-top: 3vw;
-      margin-bottom: 2vw;
+      margin-bottom: 1vw;
       border-radius: 10px;
       overflow: hidden;
       text-align: center;
@@ -174,10 +182,12 @@
 
   <div class="title">vSocial Cybersickness Questionnaire</div>
 
-
   <div class="questions-container">
 
     <div class="speaker-questions" id="part-1-container">
+
+      <div class="subtitle">Physical Symptoms</div>
+
       <div class="clip-name">Please answer to what degree you feel each of the following symptoms with 1 being not at all and 5 being very much</div>
 
       <div class="question">General Discomfort</div>
@@ -225,7 +235,7 @@
         </form>
       </div>
 
-      <div class="question">Fullness of Head</div>
+      <div class="question">Nausea</div>
         <div class="form-container">
           <div class="checkmark"></div>
           <div class="cross"></div>
@@ -243,7 +253,7 @@
           </form>
         </div>
 
-        <div class="question">Dizzy</div>
+        <div class="question">Dizziness</div>
         <div class="form-container">
           <div class="checkmark"></div>
           <div class="cross"></div>
@@ -252,7 +262,7 @@
           </form>
         </div>
 
-      <div class="question">Vertigo</div>
+      <div class="question">Sweating</div>
       <div class="form-container">
         <div class="checkmark"></div>
         <div class="cross"></div>
@@ -268,6 +278,9 @@
 
 
     <div class="speaker-questions" id="part-2-container">
+
+      <div class="subtitle">User Experience Issues</div>
+
       <div class="clip-name">Please answer to what degree you were affected by the following with 1 being not at all and 5 being very much</div>
 
       <div class="question">Screen Shakiness</div>
@@ -306,12 +319,39 @@
         </form>
       </div>
 
-      <div class="question">Hearing Noise over Instructor</div>
+      <div class="question">Movement Problems</div>
       <div class="form-container">
         <div class="checkmark"></div>
         <div class="cross"></div>
         <form class="radio-group">
           <input type="radio" id="q14-option-1" name="selector" value="1"><label for="q14-option-1">1</label><input type="radio" id="q14-option-2" name="selector" value="2"><label for="q14-option-2">2</label><input type="radio" id="q14-option-3" name="selector" value="3"><label for="q14-option-3">3</label><input type="radio" id="q14-option-4" name="selector" value="4"><label for="q14-option-4">4</label><input type="radio" id="q14-option-5" name="selector" value="5"><label for="q14-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Poor Scene Quality</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q15-option-1" name="selector" value="1"><label for="q15-option-1">1</label><input type="radio" id="q15-option-2" name="selector" value="2"><label for="q15-option-2">2</label><input type="radio" id="q15-option-3" name="selector" value="3"><label for="q15-option-3">3</label><input type="radio" id="q15-option-4" name="selector" value="4"><label for="q15-option-4">4</label><input type="radio" id="q15-option-5" name="selector" value="5"><label for="q15-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Lack of Immersion</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q16-option-1" name="selector" value="1"><label for="q16-option-1">1</label><input type="radio" id="q16-option-2" name="selector" value="2"><label for="q16-option-2">2</label><input type="radio" id="q16-option-3" name="selector" value="3"><label for="q16-option-3">3</label><input type="radio" id="q16-option-4" name="selector" value="4"><label for="q16-option-4">4</label><input type="radio" id="q16-option-5" name="selector" value="5"><label for="q16-option-5">5</label>
+        </form>
+      </div>
+
+      <div class="question">Depth Perception Inaccuracy</div>
+      <div class="form-container">
+        <div class="checkmark"></div>
+        <div class="cross"></div>
+        <form class="radio-group">
+          <input type="radio" id="q17-option-1" name="selector" value="1"><label for="q17-option-1">1</label><input type="radio" id="q17-option-2" name="selector" value="2"><label for="q17-option-2">2</label><input type="radio" id="q17-option-3" name="selector" value="3"><label for="q17-option-3">3</label><input type="radio" id="q17-option-4" name="selector" value="4"><label for="q17-option-4">4</label><input type="radio" id="q17-option-5" name="selector" value="5"><label for="q17-option-5">5</label>
         </form>
       </div>
 
@@ -352,7 +392,6 @@
           });
           arr = []
           $("#part-2-container").find('input[type="radio"]:checked').each(function(){
-             console.log($(this).val());
              arr.push($(this).val());
           });
         }
@@ -364,11 +403,19 @@
           });
           arr = []
           $("#part-1-container").find('input[type="radio"]:checked').each(function(){
-             console.log($(this).val());
              arr.push($(this).val());
           });
         }
         return allAnswered;
+      }
+
+      function sendData(scores) {
+        request = $.ajax({
+          url: "courseplan.pro/includes/send_data.php",
+          type: "POST",
+          data: {"scores": scores},
+          success: function() { }
+        });
       }
 
       $(".clear-button").click(function() {
@@ -387,9 +434,14 @@
         }
       });
 
+
+      var scores = "";
       $("#nextButton").click(function(){
         // let answers = ($(document.getElementsByClassName('debug')).html());
         console.log(arr);
+        if (scores.length < 9) {
+          scores += arr.join("");
+        }
         // window.location.href = "ui-questions.html";
         $("#part-1-container").fadeOut(function(){
           $("#part-2-container").fadeIn();
@@ -400,6 +452,11 @@
       $("#submitButton").click(function(){
         // let answers = ($(document.getElementsByClassName('debug')).html());
         console.log(arr);
+        if (scores.length < 17) {
+          scores += arr.join("");
+          sendData(scores);
+        }
+        console.log(scores);
         // window.location.href = "index2.html";
         // return answers; //storing answers? Probably need PHP
       });
