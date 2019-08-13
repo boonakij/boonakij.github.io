@@ -114,7 +114,7 @@
     }
 
 
-    #submitButton, #nextButton{
+    #submitButton, #nextButton, #againButton {
       transition: 0.3s all;
       border: solid .3vw #675f6b;
       display: inline-block;
@@ -130,6 +130,12 @@
        height: 5vw;
       font-size: 2.5vw;
       font-weight: bold;
+    }
+
+    #againButton {
+      display: block;
+      margin: auto;
+      margin-top: 20%;
     }
 
 
@@ -175,22 +181,27 @@
       display: none;
     }
 
+    #part-3-container {
+      display: none;
+      font-size: 10vw;
+      text-align: center;
+      width: 100%;
+      margin-top: 40%;
+      color: white;
+    }
+
   </style>
 </head>
 
 <body>
 
-  <div class="title">vSocial Cybersickness Questionnaire</div>
+  <div class="title">vSocial UIX Assessment</div>
 
   <div class="questions-container">
 
     <div class="speaker-questions" id="part-1-container">
 
-      <div class="subtitle">Physical Symptoms</div>
-
-      <div class="clip-name">Please answer to what degree you feel each of the following symptoms with 1 being not at all and 5 being very much</div>
-
-      <div class="question">General Discomfort</div>
+      <div class="question">Survey Number</div>
       <div class="form-container">
         <div class="checkmark"></div>
         <div class="cross"></div>
@@ -199,7 +210,12 @@
         </form>
       </div>
 
-      <div class="question">Fatigue</div>
+
+      <div class="subtitle">Immersion Questions</div>
+
+      <div class="clip-name">Please respond to the following questions with 1 being not at all and 5 being very much</div>
+
+      <div class="question">How mentally engaged are you in the virtual environment?</div>
       <div class="form-container">
         <div class="checkmark"></div>
         <div class="cross"></div>
@@ -208,7 +224,7 @@
         </form>
       </div>
 
-      <div class="question">Eyestrain</div>
+      <div class="question">How comfortable do you feel in the virtual environment?</div>
       <div class="form-container">
         <div class="checkmark"></div>
         <div class="cross"></div>
@@ -217,7 +233,7 @@
         </form>
       </div>
 
-      <div class="question">Difficulty Focusing</div>
+      <div class="question">How smooth is movement in the virtual environment?</div>
       <div class="form-container">
         <div class="checkmark"></div>
         <div class="cross"></div>
@@ -226,7 +242,11 @@
         </form>
       </div>
 
-      <div class="question">Headache</div>
+      <div class="subtitle">Usability Questions</div>
+
+      <div class="clip-name">Please respond to the following questions with 1 being not at all and 5 being very much</div>
+
+      <div class="question">Are the controls sensitive to your movement and capable of performing tasks?</div>
       <div class="form-container">
         <div class="checkmark"></div>
         <div class="cross"></div>
@@ -235,7 +255,7 @@
         </form>
       </div>
 
-      <div class="question">Nausea</div>
+      <div class="question">Are you able to see the games clearly?</div>
         <div class="form-container">
           <div class="checkmark"></div>
           <div class="cross"></div>
@@ -244,7 +264,7 @@
           </form>
         </div>
 
-        <div class="question">Blurred Vision</div>
+        <div class="question">Are you able to hear the sounds in the virtual environment?</div>
         <div class="form-container">
           <div class="checkmark"></div>
           <div class="cross"></div>
@@ -253,116 +273,22 @@
           </form>
         </div>
 
-        <div class="question">Dizziness</div>
         <div class="form-container">
-          <div class="checkmark"></div>
-          <div class="cross"></div>
-          <form class="radio-group">
-            <input type="radio" id="q8-option-1" name="selector" value="1"><label for="q8-option-1">1</label><input type="radio" id="q8-option-2" name="selector" value="2"><label for="q8-option-2">2</label><input type="radio" id="q8-option-3" name="selector" value="3"><label for="q8-option-3">3</label><input type="radio" id="q8-option-4" name="selector" value="4"><label for="q8-option-4">4</label><input type="radio" id="q8-option-5" name="selector" value="5"><label for="q8-option-5">5</label>
-          </form>
+          <button id="submitButton">Submit</button>
         </div>
-
-      <div class="question">Sweating</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q9-option-1" name="selector" value="1"><label for="q9-option-1">1</label><input type="radio" id="q9-option-2" name="selector" value="2"><label for="q9-option-2">2</label><input type="radio" id="q9-option-3" name="selector" value="3"><label for="q9-option-3">3</label><input type="radio" id="q9-option-4" name="selector" value="4"><label for="q9-option-4">4</label><input type="radio" id="q9-option-5" name="selector" value="5"><label for="q9-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="form-container">
-        <button id="nextButton">Next</button>
-      </div>
     </div>
 
+    <div>
+      <div id="part-3-container">Thanks for completing the survey!</div>
 
-    <div class="speaker-questions" id="part-2-container">
-
-      <div class="subtitle">User Experience Issues</div>
-
-      <div class="clip-name">Please answer to what degree you were affected by the following with 1 being not at all and 5 being very much</div>
-
-      <div class="question">Screen Shakiness</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q10-option-1" name="selector" value="1"><label for="q10-option-1">1</label><input type="radio" id="q10-option-2" name="selector" value="2"><label for="q10-option-2">2</label><input type="radio" id="q10-option-3" name="selector" value="3"><label for="q10-option-3">3</label><input type="radio" id="q10-option-4" name="selector" value="4"><label for="q10-option-4">4</label><input type="radio" id="q10-option-5" name="selector" value="5"><label for="q10-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="question">Screen Freezing</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q11-option-1" name="selector" value="1"><label for="q11-option-1">1</label><input type="radio" id="q11-option-2" name="selector" value="2"><label for="q11-option-2">2</label><input type="radio" id="q11-option-3" name="selector" value="3"><label for="q11-option-3">3</label><input type="radio" id="q11-option-4" name="selector" value="4"><label for="q11-option-4">4</label><input type="radio" id="q11-option-5" name="selector" value="5"><label for="q11-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="question">Obstructed View of Content</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q12-option-1" name="selector" value="1"><label for="q12-option-1">1</label><input type="radio" id="q12-option-2" name="selector" value="2"><label for="q12-option-2">2</label><input type="radio" id="q12-option-3" name="selector" value="3"><label for="q12-option-3">3</label><input type="radio" id="q12-option-4" name="selector" value="4"><label for="q12-option-4">4</label><input type="radio" id="q12-option-5" name="selector" value="5"><label for="q12-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="question">Noise Problems</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q13-option-1" name="selector" value="1"><label for="q13-option-1">1</label><input type="radio" id="q13-option-2" name="selector" value="2"><label for="q13-option-2">2</label><input type="radio" id="q13-option-3" name="selector" value="3"><label for="q13-option-3">3</label><input type="radio" id="q13-option-4" name="selector" value="4"><label for="q13-option-4">4</label><input type="radio" id="q13-option-5" name="selector" value="5"><label for="q13-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="question">Movement Problems</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q14-option-1" name="selector" value="1"><label for="q14-option-1">1</label><input type="radio" id="q14-option-2" name="selector" value="2"><label for="q14-option-2">2</label><input type="radio" id="q14-option-3" name="selector" value="3"><label for="q14-option-3">3</label><input type="radio" id="q14-option-4" name="selector" value="4"><label for="q14-option-4">4</label><input type="radio" id="q14-option-5" name="selector" value="5"><label for="q14-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="question">Poor Scene Quality</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q15-option-1" name="selector" value="1"><label for="q15-option-1">1</label><input type="radio" id="q15-option-2" name="selector" value="2"><label for="q15-option-2">2</label><input type="radio" id="q15-option-3" name="selector" value="3"><label for="q15-option-3">3</label><input type="radio" id="q15-option-4" name="selector" value="4"><label for="q15-option-4">4</label><input type="radio" id="q15-option-5" name="selector" value="5"><label for="q15-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="question">Lack of Immersion</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q16-option-1" name="selector" value="1"><label for="q16-option-1">1</label><input type="radio" id="q16-option-2" name="selector" value="2"><label for="q16-option-2">2</label><input type="radio" id="q16-option-3" name="selector" value="3"><label for="q16-option-3">3</label><input type="radio" id="q16-option-4" name="selector" value="4"><label for="q16-option-4">4</label><input type="radio" id="q16-option-5" name="selector" value="5"><label for="q16-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="question">Depth Perception Inaccuracy</div>
-      <div class="form-container">
-        <div class="checkmark"></div>
-        <div class="cross"></div>
-        <form class="radio-group">
-          <input type="radio" id="q17-option-1" name="selector" value="1"><label for="q17-option-1">1</label><input type="radio" id="q17-option-2" name="selector" value="2"><label for="q17-option-2">2</label><input type="radio" id="q17-option-3" name="selector" value="3"><label for="q17-option-3">3</label><input type="radio" id="q17-option-4" name="selector" value="4"><label for="q17-option-4">4</label><input type="radio" id="q17-option-5" name="selector" value="5"><label for="q17-option-5">5</label>
-        </form>
-      </div>
-
-      <div class="form-container">
-        <button id="submitButton">Submit</button>
-      </div>
+      <div id="againButton">Take the Survey Again</div>
     </div>
 
   </div>
 
   <div class="clear-button">Clear</div>
+
+
 
 
   <script>
@@ -371,6 +297,8 @@
       $("#submitButton").hide();
 
       $("#nextButton").hide();
+
+      $("#againButton").hide();
 
       if(allAnswered()){
         $("#submitButton").show();
@@ -410,12 +338,14 @@
       }
 
       function sendData(scores) {
-        request = $.ajax({
-          url: "http://courseplan.pro/includes/send_data.php",
-          type: "GET",
-          data: {"scores": scores},
-          success: function() { }
-        });
+        // To store data replace send_data.php with any file that sends data to a database
+
+        // request = $.ajax({
+        //   url: "send_data.php",
+        //   type: "POST",
+        //   data: {"scores": scores},
+        //   success: function() { }
+        // });
       }
 
       $(".clear-button").click(function() {
@@ -427,7 +357,7 @@
       $('input').on('change', function() {
         if (allAnswered() && !$("#part-1-container").hasClass("completed")) {
           $("#part-1-container").addClass("completed")
-          $("#nextButton").show();
+          $("#submitButton").show();
         }
         else if (allAnswered() && $("#part-1-container").hasClass("completed")) {
           $("#submitButton").show();
@@ -437,29 +367,33 @@
 
       var scores = "";
       $("#nextButton").click(function(){
-        // let answers = ($(document.getElementsByClassName('debug')).html());
-        console.log(arr);
         if (scores.length < 9) {
           scores += arr.join("");
+          $("#part-1-container").fadeOut(function(){
+            $("#part-2-container").fadeIn();
+          });
         }
-        // window.location.href = "ui-questions.html";
-        $("#part-1-container").fadeOut(function(){
-          $("#part-2-container").fadeIn();
-        });
-        // return answers; //storing answers? Probably need PHP
+        console.log(scores);
       });
 
       $("#submitButton").click(function(){
-        // let answers = ($(document.getElementsByClassName('debug')).html());
-        console.log(arr);
         if (scores.length < 17) {
           scores += arr.join("");
-          sendData(scores);
+          // sendData(scores);
+          // console.log(scores);
+          $("#part-1-container").fadeOut(function(){
+            $(".clear-button").hide();
+            $("#part-3-container").fadeIn();
+            $("#againButton").fadeIn();
+          });
         }
-        console.log(scores);
-        // window.location.href = "index2.html";
-        // return answers; //storing answers? Probably need PHP
       });
+
+      $("#againButton").click(function(){
+        location.reload();
+      });
+
+
 
     });
   </script>
